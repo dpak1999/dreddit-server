@@ -11,11 +11,25 @@
     "dev:ts": "nodemon --exec ts-node src/index.ts"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@mikro-orm/cli": "^4.5.5",
+    "@mikro-orm/core": "^4.5.5",
+    "@mikro-orm/migrations": "^4.5.5",
+    "@mikro-orm/postgresql": "^4.5.5",
+    "dotenv": "^10.0.0",
+    "pg": "^8.6.0"
+  },
   "devDependencies": {
     "@types/node": "^15.6.1",
     "nodemon": "^2.0.7",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
   }
 }

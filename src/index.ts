@@ -1,3 +1,10 @@
 /** @format */
+import { MikroORM } from "@mikro-orm/core";
+import mikroOrmConfig from "./mikro-orm.config";
 
-console.log("hello world");
+const main = async () => {
+  const orm = await MikroORM.init(mikroOrmConfig);
+  await orm.getMigrator().up();
+};
+
+main();
