@@ -8,7 +8,8 @@
     "dev": "nodemon dist/index.js",
     "start:js": "node dist/index.js",
     "start:ts": "ts-node src/index.ts",
-    "dev:ts": "nodemon --exec ts-node src/index.ts"
+    "dev:ts": "nodemon --exec ts-node src/index.ts",
+    "create:migration": "mikro-orm migration:create"
   },
   "license": "MIT",
   "dependencies": {
@@ -17,6 +18,7 @@
     "@mikro-orm/migrations": "^4.5.5",
     "@mikro-orm/postgresql": "^4.5.5",
     "apollo-server-express": "^2.25.0",
+    "argon2": "^0.27.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
