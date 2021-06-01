@@ -37,6 +37,7 @@ const main = async () => {
         sameSite: "lax",
         secure: __prod__,
       },
+      saveUninitialized: false,
       secret: "ajksdbsdnczkjdshdkjas",
       resave: false,
     })
