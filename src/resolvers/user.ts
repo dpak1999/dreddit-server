@@ -18,6 +18,9 @@ import { COOKIE_NAME } from "../constants";
 @InputType()
 class UsernamePasswordInput {
   @Field()
+  email: string;
+
+  @Field()
   username: string;
 
   @Field()
@@ -42,6 +45,12 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
+  // @Mutation(() => Boolean)
+  // async forgotPassword(@Arg("email") email: string, @Ctx() { req }: MyContext) {
+  //   // const user = await
+  //   return true;
+  // }
+
   // Me query to get current logged in user
   @Query(() => User, { nullable: true })
   async me(@Ctx() { req, em }: MyContext) {
@@ -59,6 +68,17 @@ export class UserResolver {
     @Arg("options") options: UsernamePasswordInput,
     @Ctx() { em, req }: MyContext
   ): Promise<UserResponse> {
+    if (!options.email.includes("@")) {
+      return {
+        errors: [
+          {
+            field: "email",
+            message: "Enter a valid email",
+          },
+        ],
+      };
+    }
+
     if (options.username.length <= 3) {
       return {
         errors: [
@@ -85,6 +105,7 @@ export class UserResolver {
     const user = em.create(User, {
       username: options.username,
       password: hashedPassword,
+      email: options.email,
     });
 
     try {
