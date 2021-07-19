@@ -7,7 +7,6 @@ import {
   Ctx,
   Field,
   InputType,
-  Int,
   Mutation,
   Query,
   Resolver,
@@ -27,12 +26,12 @@ class PostInput {
 @Resolver()
 export class PostResolver {
   @Query(() => [Post])
-  posts(): Promise<Post[]> {
+  async posts(): Promise<Post[]> {
     return Post.find();
   }
 
   @Query(() => Post, { nullable: true })
-  post(@Arg("id", () => Int) id: number): Promise<Post | undefined> {
+  post(@Arg("id") id: number): Promise<Post | undefined> {
     return Post.findOne(id);
   }
 
